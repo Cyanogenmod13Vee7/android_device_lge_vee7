@@ -591,10 +591,10 @@ service log-kernel /system/bin/logcat_kmsg /data/logger/kernel.log 4096 4
 #    class late_start
     oneshot
 
-#on property:persist.service.kernel.enable=1
-#    touch /data/logger/kernel.log
-#    chmod 0644 /data/logger/kernel.log
-#    start log-kernel
+on property:persist.service.kernel.enable=1
+    touch /data/logger/kernel.log
+    chmod 0644 /data/logger/kernel.log
+    start log-kernel
 
 #on property:persist.service.kernel.enable=0
 #    stop log-kernel

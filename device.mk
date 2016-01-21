@@ -14,18 +14,45 @@
 # limitations under the License.
 #
 
-# This file includes all definitions that apply to all L7II devices.
-#
-# Everything in this directory will become public
-
-# Include Vee Common
-$(call inherit-product, device/lge/vee-common/vee-common.mk)
 
 # inherit from the proprietary version
-$(call inherit-product, vendor/lge-vee/vee7/vee7-vendor.mk)
+$(call inherit-product, vendor/lge/vee7/vee7-vendor.mk)
 
 # NFC
 #$(call inherit-product, device/lge/vee7/nfc.mk) # STOPPED
+
+# Packages
+PRODUCT_PACKAGES += \
+    audio.primary.msm7x27a \
+    audio.a2dp.default \
+    audio.usb.default \
+    libaudioutils
+
+PRODUCT_PACKAGES += \
+    libgenlock \
+    copybit.msm7x27a \
+    gralloc.msm7x27a \
+    libqdMetaData \
+    memtrack.msm7x27a \
+    hwcomposer.msm7x27a \
+    libtilerenderer
+
+PRODUCT_PACKAGES += \
+    libmm-omxcore \
+    libOmxCore \
+    libstagefrighthw
+
+PRODUCT_PACKAGES += \
+    gps.msm7x27a
+
+PRODUCT_PACKAGES += \
+    camera.msm7x27a
+
+PRODUCT_PACKAGES += \
+    com.android.future.usb.accessory \
+    hwmac \
+    make_ext4fs \
+    setup_fs
 
 # Rootdir files
 PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,device/lge/vee7/rootdir,root)
@@ -40,6 +67,19 @@ DEVICE_PACKAGE_OVERLAYS := device/lge/vee7/overlay
 
 # Other Packages
 PRODUCT_PACKAGES += Torch
+
+# Allow ADB by default
+ADDITIONAL_DEFAULT_PROPERTIES += \
+   ro.secure=0 \
+   ro.adb.secure=0
+   persist.service.kernel.enable=1
+
+
+PRODUCT_PROPERTY_OVERRIDES += \
+   persist.sys.root_access=3
+   persist.service.kernel.enable=1
+
+
 
 # Permission files
 PRODUCT_COPY_FILES += frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml 
