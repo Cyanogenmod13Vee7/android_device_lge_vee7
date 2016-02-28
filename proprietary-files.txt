@@ -11,9 +11,7 @@ bin/rmt_storage
 
 #hw
 lib/hw/sensors.default.so
-lib/hw/lights.msm7627a.so
-lib/hw/camera.msm7627a.so
-lib/hw/gps.default.so
+#lib/hw/gps.default.so
 lib/hw/nfc.default.so
 
 #ril
@@ -63,7 +61,6 @@ lib/libmmcamera_faceproc.so
 lib/libmmcamera_frameproc.so
 lib/libmmcamera_hdr_lib.so
 lib/libmmcamera_image_stab.so
-lib/libmmcamera_interface2.so
 lib/libmmcamera_statsproc31.so
 lib/libmmcamera_wavelet_lib.so
 lib/libgemini.so
@@ -119,18 +116,6 @@ lib/libwms.so
 lib/libwmsts.so
 lib/libwfcu.so
 lib/libwcnftm.so
-
-#egl
-lib/libOpenVG.so
-lib/libgsl.so
-lib/libsc-a2xx.so
-lib/egl/libGLESv2_adreno200.so
-lib/egl/libGLESv1_CM_adreno200.so
-lib/egl/libEGL_adreno200.so
-lib/egl/eglsubAndroid.so
-lib/egl/libq3dtools_adreno200.so
-etc/firmware/yamato_pfp.fw
-etc/firmware/yamato_pm4.fw
 
 #etc
 etc/firmware/wlan/volans/WCN1314_cfg.dat

@@ -1,0 +1,68 @@
+##########################
+#   © neutrondev 2016    #
+#<neutrondev03@gmail.com>#
+##########################
+
+# Radio
+rild.libpath=/system/lib/libril-qc-qmi-1.so
+rild.libargs=-d /dev/smd0
+ril.subscription.types=NV,RUIM
+persist.radio.apm_sim_not_pwdn=1
+ro.telephony.call_ring.multiple=false
+ro.ril.transmitpower=true
+gsm.version.baseband=NEUTRONDEV
+ro.telephony.ril_class=LgeVee7RIL
+ro.telephony.ril.config=nodefaultdata
+
+# Lcd Rotation
+ro.sf.hwrotation=180
+
+# Display
+debug.egl.recordable.rgba8888=1 
+debug.composition.type=dyn 
+debug.hwc.dynThreshold=1.9 
+persist.hwc.mdpcomp.enable=false 
+debug.mdpcomp.logs=0 
+debug.gralloc.map_fb_memory=1 
+debug.hwc.fakevsync=1 
+ro.max.fling_velocity=4000 
+ro.opengles.version=131072 
+ro.sf.lcd_density=240
+
+# QCOM
+com.qc.hardware=true
+dev.pm.dyn_sample_period=700000
+dev.pm.dyn_samplingrate=1
+ro.vendor.extension_library=/system/lib/libqc-opt.so
+
+# WiFi
+wifi.interface=wlan0
+wifi.supplicant_scan_interval=60
+
+# Media StageFright
+media.stagefright.enable-player=true
+media.stagefright.enable-meta=false
+media.stagefright.enable-scan=true
+media.stagefright.enable-http=true
+media.stagefright.enable-fma2dp=true
+media.stagefright.enable-aac=true
+media.stagefright.enable-qcp=true
+
+# Runtime Optimizations
+dalvik.vm.dex2oat-filter=balanced
+dalvik.vm.dex2oat-flags=--no-watch-dog
+dalvik.vm.image-dex2oat-filter=speed
+dalvik.vm.dex2oat-Xms=8m
+dalvik.vm.dex2oat-Xmx=96m
+dalvik.vm.image-dex2oat-Xms=48m
+dalvik.vm.image-dex2oat-Xmx=48m
+
+# Low RAM
+ro.config.low_ram=true
+config.disable_atlas=true
+persist.sys.force_highendgfx=true
+ro.config.max_starting_bg=6
+ro.sys.fw.bg_apps_limit=8
+
+# Newer camera API isn't supported.
+camera2.portability.force_api=1
