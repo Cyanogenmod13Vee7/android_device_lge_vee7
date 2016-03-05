@@ -57,7 +57,8 @@ PRODUCT_PACKAGES +=  \
 	gps.msm7x27a \
 	power.msm7x27a \
 	lights.msm7x27a \
-	camera.msm7x27a
+	camera.msm7x27a \
+	Snap
 
 # BT
 PRODUCT_PACKAGES += \
