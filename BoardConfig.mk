@@ -2,12 +2,10 @@
 -include vendor/lge/vee7/BoardConfigVendor.mk
 
 # Compiler flags
-TARGET_GLOBAL_CFLAGS += -mfloat-abi=softfp -mfpu=neon-vfpv4
-TARGET_GLOBAL_CPPFLAGS += -mfloat-abi=softfp -mfpu=neon-vfpv4
+TARGET_GLOBAL_CFLAGS += -mfloat-abi=softfp -mfpu=neon-vfpv4 -mtune=cortex-a5
+TARGET_GLOBAL_CPPFLAGS += -mfloat-abi=softfp -mfpu=neon-vfpv4 -mtune=cortex-a5
 COMMON_GLOBAL_CFLAGS += -DUSE_MDP3
 COMMON_GLOBAL_CFLAGS += -DLPA_DEFAULT_BUFFER_SIZE=480
-TARGET_GLOBAL_CPPFLAGS += -DNEEDS_VECTORIMPL_SYMBOLS
-COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
 
 # Targets
 TARGET_AVOID_DRAW_TEXTURE_EXTENSION := true
@@ -23,7 +21,7 @@ TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
-TARGET_CPU_VARIANT := cortex-a9
+TARGET_CPU_VARIANT := cortex-a5
 ARCH_ARM_HAVE_TLS_REGISTER := true
 TARGET_CORTEX_CACHE_LINE_32 := true
 ARCH_ARM_HAVE_32_BYTE_CACHE_LINES := true
@@ -34,7 +32,7 @@ BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01300000
 BOARD_KERNEL_BASE := 0x00200000
 BOARD_KERNEL_PAGESIZE := 4096
 TARGET_KERNEL_CONFIG := cyanogenmod_vee7_defconfig
-BOARD_KERNEL_CMDLINE := androidboot.hardware=vee7 selinux=0 msm_cpr.enable=0 no_console_suspend=1
+BOARD_KERNEL_CMDLINE := androidboot.hardware=vee7 androidboot.selinux=permissive
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 12582912
@@ -57,15 +55,15 @@ BOARD_USES_QCOM_GPS := true
 BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50000
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := $(TARGET_BOARD_PLATFORM)
 
+# Bionic
+BOARD_USES_LEGACY_MMAP := true
+
 # Media
 TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
 COMMON_GLOBAL_CFLAGS += -DBOARD_CANT_REALLOCATE_OMX_BUFFERS
 
 # Audio
 BOARD_USES_LEGACY_ALSA_AUDIO := true
-
-# Bionic
-BOARD_USES_LEGACY_MMAP := true
 
 # Screenshot
 BOARD_USE_MHEAP_SCREENSHOT := true
@@ -109,9 +107,6 @@ DONT_DEXPREOPT_PREBUILTS := true
 # Include an expanded selection of fonts
 EXTENDED_FONT_FOOTPRINT := true
 
-# Block based Over-The-Air
-BLOCK_BASED_OTA := false
-
 # Wlan
 BOARD_HAS_QCOM_WLAN := true
 BOARD_HAS_QCOM_WLAN_SDK := true
@@ -121,16 +116,13 @@ BOARD_WPA_SUPPLICANT_DRIVER := NL80211
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
 BOARD_HOSTAPD_DRIVER := NL80211
 BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
-WIFI_CFG80211_MODULE_PATH := "/system/lib/modules/cfg80211.ko"
-WIFI_CFG80211_MODULE_NAME := "cfg80211"
 WIFI_EXT_MODULE_PATH := "/system/lib/modules/librasdioif.ko"
 WIFI_EXT_MODULE_NAME := "librasdioif"
 WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/wlan.ko"
 WIFI_DRIVER_MODULE_NAME := "wlan"
 WIFI_DRIVER_FW_PATH_STA := "sta"
 WIFI_DRIVER_FW_PATH_AP := "ap"
-WIFI_DRIVER_FW_PATH_P2P := "p2p"
-WIFI_DRIVER_FW_PATH_PARAM := "/data/misc/wifi/fwpath"
+WLAN_PATH = wlan
 
 # FSTAB
 TARGET_RECOVERY_FSTAB := device/lge/vee7/rootdir/fstab.vee7
@@ -140,3 +132,11 @@ COMMON_GLOBAL_CFLAGS += -DBOARD_CHARGING_CMDLINE_NAME='"androidboot.mode"' -DBOA
 
 TARGET_BOOTANIMATION_TEXTURE_CACHE := false
 TARGET_BOOTANIMATION_HALF_RES := true
+
+# For assert
+TARGET_OTA_ASSERT_DEVICE := p710,vee7,P710
+
+# Init
+# TARGET_UNIFIED_DEVICE := true
+# TARGET_INIT_VENDOR_LIB := libinit_vee7
+# TARGET_LIBINIT_DEFINES_FILE := device/lge/vee7/init/init_vee7.c
