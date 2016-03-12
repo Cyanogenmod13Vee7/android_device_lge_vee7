@@ -8,6 +8,9 @@ DEVICE_PACKAGE_OVERLAYS += device/lge/vee7/overlay
 
 $(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
 
+PRODUCT_AAPT_CONFIG := normal
+PRODUCT_AAPT_PREF_CONFIG := hdpi
+
 # Rootdir files
 PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,device/lge/vee7/rootdir,root)
 
@@ -38,15 +41,10 @@ PRODUCT_PACKAGES += \
     gralloc.msm7x27a \
     memtrack.msm7x27a \
     hwcomposer.msm7x27a \
-
-# QCOM Display
-PRODUCT_PACKAGES += \
-    libgenlock \
-    libmemalloc \
-    liboverlay \
-    libqdutils \
-    libtilerenderer
-
+	libgenlock \
+	liboverlay \
+	
+# Omx
 PRODUCT_PACKAGES += \
     libmm-omxcore \
     libOmxCore \
@@ -57,18 +55,19 @@ PRODUCT_PACKAGES +=  \
 	gps.msm7x27a \
 	power.msm7x27a \
 	lights.msm7x27a \
-	camera.msm7x27a
-
-# BT
-PRODUCT_PACKAGES += \
-	libbt-vendor
+	
+# Camera
+PRODUCT_PACKAGES +=  \
+	camera.msm7x27a \
+	Snap
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
     make_ext4fs \
     e2fsck \
     resize2fs \
-    setup_fs
+    setup_fs \
+    libbt-vendor
 
 PRODUCT_PACKAGES += \
 	com.android.future.usb.accessory \
@@ -86,7 +85,8 @@ PRODUCT_PACKAGES += \
 	
 # Qcom SoftAP
 PRODUCT_PACKAGES += \
-    libQWiFiSoftApCfg
+    libQWiFiSoftApCfg \
+    libstlport
 
 # Wifi
 PRODUCT_PACKAGES += \
