@@ -20,7 +20,6 @@ LOCAL_SRC_FILES += \
 	src/channel_g.c \
 	src/channel_m.c \
 	src/channel_o.c \
-	src/channel_p.c \
 	src/channel_vg.c \
 	src/channel_vla.c \
 	src/channel_vrv.c \
