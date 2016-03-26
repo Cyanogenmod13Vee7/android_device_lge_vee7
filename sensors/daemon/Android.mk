@@ -17,7 +17,6 @@ LOCAL_SRC_FILES += \
 	src/lib/util_input_dev.c \
 	src/channel_cntl.c \
 	src/channel_a.c \
-	src/channel_g.c \
 	src/channel_m.c \
 	src/channel_o.c \
 	src/channel_vg.c \
