@@ -44,7 +44,11 @@ LOCAL_C_INCLUDES += $(LOCAL_PATH) \
                     $(LOCAL_PATH)/src/algo \
                     $(LOCAL_PATH)/src/hw \
 
+ifeq (arm,$(TARGET_ARCH))
 LOCAL_LDFLAGS += $(LOCAL_PATH)/algo/lib/bosch_lib32/libalgobsx.a
+else
+LOCAL_LDFLAGS += $(LOCAL_PATH)/algo/lib/bosch_lib64/libalgobsx.a
+endif
 
 LOCAL_LDLIBS := -llog
 LOCAL_SHARED_LIBRARIES += liblog libcutils libc libm
@@ -60,12 +64,20 @@ include $(addprefix $(LOCAL_PATH)/,$(addsuffix /Android.mk, \
 -include $(LOCAL_PATH)/src/hw/Android.mk
 
 LOCAL_MODULE_TAGS := optional
-
+ifneq (,$(sensord_suffix))
+LOCAL_MODULE = sensord.$(sensord_suffix)
+else
 LOCAL_MODULE = sensord
+endif
 
-include $(LOCAL_PATH)/../tools/vee7_config.mk
+include $(LOCAL_PATH)/../tools/moto_config.mk
 
 include $(LOCAL_PATH)/../tools/options.mk
+
+ifeq (true, $(flip_gesture_support))
+LOCAL_SRC_FILES += src/channel_gest_flip.c
+LOCAL_CFLAGS += -D__FLIP_GESTURE__
+endif
 
 LOCAL_MODULE_PATH := $(TARGET_OUT_EXECUTABLES)
 include $(BUILD_EXECUTABLE)
