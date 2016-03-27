@@ -55,19 +55,18 @@ PRODUCT_PACKAGES +=  \
 	gps.msm7x27a \
 	power.msm7x27a \
 	lights.msm7x27a \
+	sensord
 	
 # Camera
 PRODUCT_PACKAGES +=  \
-	camera.msm7x27a \
-	Snap
-
+	camera.msm7x27a 
+	
 # Filesystem management tools
 PRODUCT_PACKAGES += \
     make_ext4fs \
     e2fsck \
     resize2fs \
     setup_fs \
-    libbt-vendor
 
 PRODUCT_PACKAGES += \
 	com.android.future.usb.accessory \
