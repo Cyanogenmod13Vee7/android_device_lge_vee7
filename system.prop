@@ -67,3 +67,6 @@ dalvik.vm.dex2oat-Xmx=96m
 dalvik.vm.image-dex2oat-Xms=48m
 dalvik.vm.image-dex2oat-Xmx=48m
 ro.ksm.default=1
+
+# use 2 threads max for dex2oat
+ro.sys.fw.dex2oat_thread_count=2
